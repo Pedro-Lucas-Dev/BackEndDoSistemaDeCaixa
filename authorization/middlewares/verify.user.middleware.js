@@ -25,7 +25,7 @@ exports.hasAuthValidFields = (req, res, next) => {
 exports.isPasswordAndUserMatch = (req, res, next) => {
     UserModel.findByEmail(req.body.email).then((user) => {
         if (!user[0]) {
-            res.status(404).sed({})
+            res.status(404).send({})
         } else {
             let passwordFields = user[0].password.split('$');
             let salt = passwordFields[0];
