@@ -52,3 +52,7 @@ exports.removeById = (req, res) => {
             res.status(204).send({});
         });
 };
+
+exports.me = (req, res) => {
+    res.status(200).send(req.jwt)
+}

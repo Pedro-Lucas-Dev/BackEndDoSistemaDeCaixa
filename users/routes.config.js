@@ -22,4 +22,7 @@ exports.routesConfig = (app) => {
     app.patch('/users/:userId', UsersController.patchById)
 
     app.delete('/users/:userId', UsersController.removeById)
+    
+    app.use('/me', ValidationMiddleware.validJWTNeeded)
+    app.get('/me', UsersController.me)
 }
