@@ -9,11 +9,17 @@ categorySchema.virtual('id').get(function() {
     return this._id.toHexString();
 })
 
+categorySchema.virtual('url').get(function() {
+    return `/category/${this._id}`;
+})
+
 categorySchema.set('toJSON', {
     virtuals: true
 })
 
 const Category = mongoose.model('Category', categorySchema);
+
+exports.schema = categorySchema
 
 exports.createCategory = (categoryData) => {
     const category = new Category(categoryData);

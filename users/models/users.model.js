@@ -1,3 +1,4 @@
+const os = require("os");
 const mongoose = require('../../common/services/mongoose.service').mongoose;
 const Schema = mongoose.Schema;
 
@@ -11,6 +12,10 @@ const userSchema = new Schema({
 
 userSchema.virtual('id').get(function() {
     return this._id.toHexString();
+})
+
+userSchema.virtual('url').get(function() {
+    return `/users/${this._id}`;
 })
 
 userSchema.set('toJSON', {
