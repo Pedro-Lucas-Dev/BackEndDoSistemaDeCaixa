@@ -33,11 +33,17 @@ exports.create = (productData) => {
 }
 
 exports.findById = (id) => {
-    return Product.findById(id).then((result) => {
-        result = result.toJSON();
-        delete result._id;
-        delete result.__v;
-        return result
+    return new Promise((resolve, reject) => {
+        Product
+        .findOne({_id: id})
+        .populate({ path: "category_id", select: ["name"] })
+        .exec((err,result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        })
     })
 }
 
@@ -46,6 +52,7 @@ exports.list = (perPage, page) => {
         Product.find()
         .limit(perPage)
         .skip(perPage * page)
+        .populate({ path: "category_id", select: ["name"] })
         .exec((err, products) => {
             if (err) {
                 reject(err);
@@ -53,6 +60,7 @@ exports.list = (perPage, page) => {
                 resolve(products);
             }
         })
+
     })
 }
 
