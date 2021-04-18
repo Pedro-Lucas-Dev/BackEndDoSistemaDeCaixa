@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const AuthorizationRouter = require('./authorization/routes.config');
 const UserRouter = require('./users/routes.config');
+const CategoryRouter = require('./category/routes.config');
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Credentials', 'true');
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 AuthorizationRouter.routesConfig(app);
 UserRouter.routesConfig(app);
+CategoryRouter.routesConfig(app);
 
 app.listen(config.port, ()=>{
     console.log('app listening at port %s', config.port)
