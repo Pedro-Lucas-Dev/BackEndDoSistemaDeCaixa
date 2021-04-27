@@ -33,7 +33,7 @@ exports.findByEmail = (email) => {
 }
 
 exports.findById = (id) => {
-    return User.findById(id).then((result) => {
+    return User.findOne({_id: id}).then((result) => {
         result = result.toJSON();
         delete result._id;
         delete result.__v;
