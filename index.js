@@ -8,6 +8,7 @@ const AuthorizationRouter = require('./authorization/routes.config');
 const UserRouter = require('./users/routes.config');
 const CategoryRouter = require('./category/routes.config');
 const ProductsRouter = require('./products/routes.config');
+const SalesRouter = require('./sales/routes.config');
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -27,6 +28,7 @@ AuthorizationRouter.routesConfig(app);
 UserRouter.routesConfig(app);
 CategoryRouter.routesConfig(app);
 ProductsRouter.routesConfig(app);
+SalesRouter.routesConfig(app);
 
 app.listen(config.port, ()=>{
     console.log('app listening at port %s', config.port)
